@@ -2,7 +2,6 @@ import { Box, Typography } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
 import { Link } from "react-router-dom";
 export default function HomeSection1({ data, isLoading }) {
-  
   return (
     <Box
       sx={{
@@ -34,7 +33,7 @@ export default function HomeSection1({ data, isLoading }) {
               <Box
                 key={item?._id}
                 component={Link}
-                to={item?.slug}
+                to={`${item?.slug}`}
                 sx={{
                   minHeight: 150,
                   backgroundImage: `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(${item.url})`,

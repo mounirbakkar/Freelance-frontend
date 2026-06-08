@@ -1,10 +1,16 @@
 import { Box, CircularProgress, Typography } from "@mui/material";
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useParentCategories } from "../hooks/UsecategoryParentWithSub";
 import CategoryCard from "../components/CategoryCard";
 export default function Category() {
-  const { slug } = useParams();
-  const { data, isFetching } = useParentCategories(slug);
+  const location = useLocation();
+  const slugPath = location.pathname;
+  const slugPart = location.pathname
+    .replace("/categories/", "")
+    .split("/")
+    .filter(Boolean)
+    .pop();
+  const { data, isFetching } = useParentCategories(slugPart);
   if (isFetching) {
     return (
       <Box sx={{ textAlign: "center" }}>
@@ -23,7 +29,7 @@ export default function Category() {
         }}
       >
         {data?.data?.data?.children?.map((item) => (
-          <CategoryCard item={item} />
+          <CategoryCard item={item} parentSlug={slugPath} />
         ))}
       </Box>
     </Box>

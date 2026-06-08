@@ -22,7 +22,7 @@ export default function Router() {
         <Route index element={<Home />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
-        <Route path=":slug" element={<Category />} />
+        <Route path="/*" element={<Category />} />
         <Route
           path="account"
           element={
